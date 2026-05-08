@@ -1,99 +1,102 @@
 export type Product = {
   id: string;
   name: string;
-  category: string;
+  category: 'Home' | 'Travel' | 'Apparel' | 'Tech';
   price: number;
-  rating: number;
-  image: string;
-  color: string;
   description: string;
-  featured?: boolean;
+  image: string;
   badge?: string;
+  rating: number;
+  inventory: number;
 };
 
 export const products: Product[] = [
   {
     id: 'linen-weekender',
     name: 'Linen Weekender Tote',
-    category: 'Bags',
-    price: 148,
+    category: 'Travel',
+    price: 128,
+    description: 'A structured canvas and linen carryall with padded laptop storage and a zip-secure shoe sleeve.',
+    image: 'https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=900&q=80',
+    badge: 'Best seller',
     rating: 4.8,
-    color: 'Oat',
-    badge: 'Bestseller',
-    featured: true,
-    image:
-      'https://images.unsplash.com/photo-1594223274512-ad4803739b7c?auto=format&fit=crop&w=900&q=80',
-    description:
-      'A structured travel tote with a washable linen blend shell, interior laptop sleeve, and brass feet.',
-  },
-  {
-    id: 'ribbed-cotton-set',
-    name: 'Ribbed Cotton Lounge Set',
-    category: 'Apparel',
-    price: 122,
-    rating: 4.7,
-    color: 'Mist',
-    featured: true,
-    image:
-      'https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=80',
-    description:
-      'Soft ribbed separates designed for slow mornings, long flights, and polished off-duty layering.',
+    inventory: 18,
   },
   {
     id: 'ceramic-pour-over',
-    name: 'Ceramic Pour Over Kit',
+    name: 'Ceramic Pour-Over Set',
     category: 'Home',
-    price: 84,
-    rating: 4.9,
-    color: 'Charcoal',
+    price: 72,
+    description: 'A slow morning coffee set with a ribbed ceramic dripper, matching carafe, and walnut scoop.',
+    image: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=900&q=80',
     badge: 'New',
-    featured: true,
-    image:
-      'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=900&q=80',
-    description:
-      'A handmade ceramic dripper, carafe, and reusable steel filter for a considered daily ritual.',
-  },
-  {
-    id: 'brass-desk-lamp',
-    name: 'Brass Arc Desk Lamp',
-    category: 'Home',
-    price: 196,
-    rating: 4.6,
-    color: 'Brass',
-    image:
-      'https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=900&q=80',
-    description:
-      'Warm dimmable task lighting with a slim arched profile and weighted marble base.',
-  },
-  {
-    id: 'trail-knit-sneaker',
-    name: 'Trail Knit Sneaker',
-    category: 'Footwear',
-    price: 138,
-    rating: 4.5,
-    color: 'Forest',
-    image:
-      'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=80',
-    description:
-      'A breathable knit sneaker with grippy recycled rubber soles and all-day city support.',
-  },
-  {
-    id: 'walnut-catchall',
-    name: 'Walnut Catchall Tray',
-    category: 'Accessories',
-    price: 58,
     rating: 4.7,
-    color: 'Walnut',
-    image:
-      'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=900&q=80',
-    description:
-      'A carved walnut tray for keys, watches, and daily carry essentials with a natural oil finish.',
+    inventory: 22,
+  },
+  {
+    id: 'merino-overshirt',
+    name: 'Merino Utility Overshirt',
+    category: 'Apparel',
+    price: 164,
+    description: 'A soft merino-blend overshirt with utility pockets, matte hardware, and a relaxed layer-ready fit.',
+    image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=80',
+    rating: 4.6,
+    inventory: 9,
+  },
+  {
+    id: 'desk-lamp',
+    name: 'Pivot Desk Lamp',
+    category: 'Home',
+    price: 96,
+    description: 'An adjustable powder-coated desk lamp with warm dimming, a compact base, and braided cord.',
+    image: 'https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=900&q=80',
+    rating: 4.5,
+    inventory: 15,
+  },
+  {
+    id: 'wireless-charger',
+    name: 'Dual Dock Charger',
+    category: 'Tech',
+    price: 84,
+    description: 'A weighted aluminum wireless charging dock for phone and earbuds with a woven USB-C cable.',
+    image: 'https://images.unsplash.com/photo-1586816879360-004f5b0c51e3?auto=format&fit=crop&w=900&q=80',
+    badge: 'Fast ship',
+    rating: 4.4,
+    inventory: 31,
+  },
+  {
+    id: 'rain-shell',
+    name: 'Packable Rain Shell',
+    category: 'Apparel',
+    price: 148,
+    description: 'A lightweight recycled nylon shell with sealed seams, underarm vents, and a self-stow pocket.',
+    image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=80',
+    rating: 4.7,
+    inventory: 12,
+  },
+  {
+    id: 'travel-mug',
+    name: 'Insulated Transit Mug',
+    category: 'Travel',
+    price: 42,
+    description: 'A leak-resistant stainless mug with a ceramic-lined interior and one-handed lid.',
+    image: 'https://images.unsplash.com/photo-1523362628745-0c100150b504?auto=format&fit=crop&w=900&q=80',
+    rating: 4.8,
+    inventory: 44,
+  },
+  {
+    id: 'linen-throw',
+    name: 'Washed Linen Throw',
+    category: 'Home',
+    price: 118,
+    description: 'A garment-washed linen throw with soft fringe and year-round weight for beds, sofas, and patios.',
+    image: 'https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=900&q=80',
+    badge: 'Low stock',
+    rating: 4.9,
+    inventory: 6,
   },
 ];
 
-export const categories = ['All', 'Home', 'Apparel', 'Bags', 'Footwear', 'Accessories'];
+export const categories = ['All', 'Home', 'Travel', 'Apparel', 'Tech'] as const;
 
-export const cartItems = [
-  { productId: 'linen-weekender', quantity: 1 },
-  { productId: 'ceramic-pour-over', quantity: 2 },
-];
+export const getProductById = (id: string | undefined) => products.find((product) => product.id === id);

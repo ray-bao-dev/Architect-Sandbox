@@ -1,39 +1,48 @@
-import { Mail, MapPin, MessageSquareText } from 'lucide-react';
+import { Headphones, PackageCheck, Sparkles } from 'lucide-react';
 
 export function AboutPage() {
   return (
     <section className="page-section about-page">
-      <div className="about-hero">
-        <div>
-          <p className="eyebrow">About North & Finch</p>
-          <h1>Goods selected for useful, lasting routines.</h1>
-          <p>
-            We partner with independent makers and responsible factories to bring together everyday
-            products with quiet design, dependable materials, and practical details.
-          </p>
-        </div>
-        <img
-          src="https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=1000&q=80"
-          alt="Minimal retail interior with curated home goods"
-        />
+      <div className="page-title">
+        <p className="eyebrow">Support</p>
+        <h1>Store information and service notes</h1>
+        <p>
+          Harbor & Field is a frontend commerce skeleton with realistic support content, trust messaging, and service
+          sections ready for integration.
+        </p>
       </div>
 
-      <div className="contact-grid">
+      <div className="support-grid">
         <article>
-          <Mail size={23} />
-          <h2>Email</h2>
-          <p>support@northfinch.example</p>
+          <PackageCheck size={28} />
+          <h2>Fulfillment</h2>
+          <p>Orders show a typical 1-2 business day processing promise, free shipping threshold, and return window.</p>
         </article>
         <article>
-          <MapPin size={23} />
-          <h2>Studio</h2>
-          <p>204 Market Street, Toronto</p>
+          <Headphones size={28} />
+          <h2>Customer care</h2>
+          <p>Support pages can connect to chat, email, or FAQ content. This skeleton keeps those points visible.</p>
         </article>
         <article>
-          <MessageSquareText size={23} />
-          <h2>Hours</h2>
-          <p>Monday to Friday, 9 AM to 6 PM</p>
+          <Sparkles size={28} />
+          <h2>Merchandising</h2>
+          <p>Product cards, badges, ratings, and category filters are structured for richer catalog data later.</p>
         </article>
+      </div>
+
+      <div className="policy-band">
+        <div>
+          <h2>Returns</h2>
+          <p>Unused goods can be returned within 30 days. Final policy text should be reviewed before launch.</p>
+        </div>
+        <div>
+          <h2>Shipping</h2>
+          <p>Domestic shipping options are represented in the order summary. Carrier integrations are not included.</p>
+        </div>
+        <div>
+          <h2>Privacy</h2>
+          <p>Checkout fields are display-only in this skeleton and do not submit customer data to a backend service.</p>
+        </div>
       </div>
     </section>
   );

@@ -1,78 +1,85 @@
 import { LockKeyhole } from 'lucide-react';
+import { useCart } from '../cartContext';
 import { CartSummary } from '../components/CartSummary';
-import { cartItems, products } from '../data/products';
 
 export function CheckoutPage() {
-  const subtotal = cartItems.reduce((total, item) => {
-    const product = products.find((productItem) => productItem.id === item.productId)!;
-    return total + product.price * item.quantity;
-  }, 0);
+  const { itemCount } = useCart();
 
   return (
     <section className="page-section">
-      <div className="page-heading">
-        <p className="eyebrow">Secure checkout</p>
-        <h1>Complete your order</h1>
+      <div className="page-title">
+        <p className="eyebrow">Checkout</p>
+        <h1>Delivery and payment</h1>
+        <p>This is a checkout skeleton for collecting order details without processing real payments.</p>
       </div>
+
       <div className="checkout-layout">
-        <form className="checkout-form">
+        <form className="checkout-form" onSubmit={(event) => event.preventDefault()}>
           <fieldset>
-            <legend>Contact</legend>
-            <label>
-              Email
-              <input type="email" placeholder="you@example.com" />
-            </label>
-          </fieldset>
-          <fieldset>
-            <legend>Shipping address</legend>
-            <div className="field-grid">
+            <legend>Customer</legend>
+            <div className="form-grid two">
               <label>
                 First name
-                <input type="text" />
+                <input required autoComplete="given-name" placeholder="Jordan" />
               </label>
               <label>
                 Last name
-                <input type="text" />
+                <input required autoComplete="family-name" placeholder="Lee" />
               </label>
             </div>
             <label>
-              Address
-              <input type="text" />
+              Email
+              <input required type="email" autoComplete="email" placeholder="jordan@example.com" />
             </label>
-            <div className="field-grid">
+          </fieldset>
+
+          <fieldset>
+            <legend>Shipping</legend>
+            <label>
+              Address
+              <input required autoComplete="street-address" placeholder="128 Market Street" />
+            </label>
+            <div className="form-grid three">
               <label>
                 City
-                <input type="text" />
+                <input required autoComplete="address-level2" placeholder="Austin" />
+              </label>
+              <label>
+                State
+                <input required autoComplete="address-level1" placeholder="TX" maxLength={2} />
               </label>
               <label>
                 ZIP
-                <input type="text" />
+                <input required autoComplete="postal-code" placeholder="78701" />
               </label>
             </div>
           </fieldset>
+
           <fieldset>
             <legend>Payment</legend>
             <label>
               Card number
-              <input type="text" placeholder="4242 4242 4242 4242" />
+              <input required inputMode="numeric" placeholder="4242 4242 4242 4242" />
             </label>
-            <div className="field-grid">
+            <div className="form-grid two">
               <label>
                 Expiration
-                <input type="text" placeholder="MM / YY" />
+                <input required placeholder="MM / YY" />
               </label>
               <label>
-                CVC
-                <input type="text" />
+                Security code
+                <input required inputMode="numeric" placeholder="123" />
               </label>
             </div>
           </fieldset>
-          <button className="primary-button wide-button" type="button">
+
+          <button className="button button-primary full-width" type="submit" disabled={!itemCount}>
             <LockKeyhole size={18} />
-            Place order
+            Place demo order
           </button>
         </form>
-        <CartSummary subtotal={subtotal} />
+
+        <CartSummary checkout />
       </div>
     </section>
   );

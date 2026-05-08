@@ -1,74 +1,64 @@
-import { ArrowRight, ShieldCheck, Truck, WalletCards } from 'lucide-react';
+import { ArrowRight, Truck, ShieldCheck, RotateCcw } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { ProductCard } from '../components/ProductCard';
-import { categories, products } from '../data/products';
+import { products } from '../data/products';
 
 export function HomePage() {
-  const featuredProducts = products.filter((product) => product.featured);
+  const featured = products.slice(0, 4);
 
   return (
     <>
       <section className="hero-section">
         <div className="hero-copy">
-          <p className="eyebrow">Spring edit now live</p>
-          <h1>North & Finch</h1>
+          <p className="eyebrow">Spring edit</p>
+          <h1>Goods for sharper routines at home and away.</h1>
           <p>
-            Modern essentials for a calmer home, a sharper wardrobe, and better everyday rituals.
+            Shop durable everyday pieces selected for clean design, useful details, and flexible movement between work,
+            travel, and weekend plans.
           </p>
           <div className="hero-actions">
-            <Link className="primary-button" to="/catalog">
-              Shop collection
+            <Link className="button button-primary" to="/catalog">
+              Shop catalog
               <ArrowRight size={18} />
             </Link>
-            <Link className="secondary-button" to="/about">
-              Our standards
+            <Link className="button button-ghost" to="/about">
+              Store support
             </Link>
           </div>
         </div>
+        <div className="hero-feature" aria-label="Featured product collection">
+          <img
+            src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1200&q=80"
+            alt="Curated store display with apparel and accessories"
+          />
+        </div>
       </section>
 
-      <section className="feature-strip" aria-label="Store benefits">
+      <section className="service-strip" aria-label="Store benefits">
         <div>
-          <Truck size={22} />
+          <Truck size={21} />
           <span>Free shipping over $150</span>
         </div>
         <div>
-          <ShieldCheck size={22} />
-          <span>30 day returns</span>
+          <ShieldCheck size={21} />
+          <span>Secure checkout skeleton</span>
         </div>
         <div>
-          <WalletCards size={22} />
-          <span>Flexible checkout</span>
+          <RotateCcw size={21} />
+          <span>30 day returns workflow</span>
         </div>
       </section>
 
-      <section className="content-section">
+      <section className="page-section">
         <div className="section-heading">
           <div>
-            <p className="eyebrow">Curated categories</p>
-            <h2>Shop by department</h2>
+            <p className="eyebrow">Featured</p>
+            <h2>Popular right now</h2>
           </div>
-          <Link to="/catalog">View all</Link>
-        </div>
-        <div className="category-grid">
-          {categories.slice(1).map((category) => (
-            <Link key={category} to="/catalog" className="category-tile">
-              <span>{category}</span>
-              <ArrowRight size={18} />
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      <section className="content-section">
-        <div className="section-heading">
-          <div>
-            <p className="eyebrow">Featured products</p>
-            <h2>Customer favorites</h2>
-          </div>
+          <Link to="/catalog">View all products</Link>
         </div>
         <div className="product-grid">
-          {featuredProducts.map((product) => (
+          {featured.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>

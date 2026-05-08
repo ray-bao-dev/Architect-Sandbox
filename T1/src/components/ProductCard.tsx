@@ -1,17 +1,17 @@
-import { Star } from 'lucide-react';
+import { ShoppingCart, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useCart } from '../cartContext';
 import type { Product } from '../data/products';
+import { formatCurrency } from '../utils/money';
 
-type ProductCardProps = {
-  product: Product;
-};
+export function ProductCard({ product }: { product: Product }) {
+  const { addItem } = useCart();
 
-export function ProductCard({ product }: ProductCardProps) {
   return (
     <article className="product-card">
-      <Link to={`/products/${product.id}`} className="product-image-link">
-        <img src={product.image} alt={product.name} />
-        {product.badge ? <span className="badge">{product.badge}</span> : null}
+      <Link className="product-media" to={`/products/${product.id}`} aria-label={`View ${product.name}`}>
+        <img src={product.image} alt={product.name} loading="lazy" />
+        {product.badge && <span className="badge">{product.badge}</span>}
       </Link>
       <div className="product-card-body">
         <div>
@@ -20,13 +20,18 @@ export function ProductCard({ product }: ProductCardProps) {
             <Link to={`/products/${product.id}`}>{product.name}</Link>
           </h3>
         </div>
+        <p className="product-description">{product.description}</p>
         <div className="product-meta">
-          <span>${product.price}</span>
           <span className="rating">
             <Star size={15} fill="currentColor" />
             {product.rating}
           </span>
+          <strong>{formatCurrency(product.price)}</strong>
         </div>
+        <button className="button button-secondary" type="button" onClick={() => addItem(product.id)}>
+          <ShoppingCart size={17} />
+          Add to cart
+        </button>
       </div>
     </article>
   );

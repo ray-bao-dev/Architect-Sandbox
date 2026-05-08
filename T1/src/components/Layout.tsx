@@ -1,57 +1,65 @@
-import { Menu, Search, ShoppingBag, UserRound } from 'lucide-react';
+import { Menu, ShoppingBag, X } from 'lucide-react';
+import { useState } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
-import { cartItems } from '../data/products';
+import { useCart } from '../cartContext';
 
 const navItems = [
-  { label: 'Shop', to: '/catalog' },
-  { label: 'About', to: '/about' },
-  { label: 'Cart', to: '/cart' },
+  { label: 'Home', to: '/' },
+  { label: 'Catalog', to: '/catalog' },
+  { label: 'Checkout', to: '/checkout' },
+  { label: 'Support', to: '/about' },
 ];
 
 export function Layout() {
-  const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
+  const [open, setOpen] = useState(false);
+  const { itemCount } = useCart();
 
   return (
     <div className="app-shell">
       <header className="site-header">
-        <NavLink to="/" className="brand" aria-label="North and Finch home">
-          North & Finch
-        </NavLink>
-        <nav className="desktop-nav" aria-label="Primary navigation">
+        <a className="brand" href="/" aria-label="Harbor and Field home">
+          <span className="brand-mark">H&F</span>
+          <span>Harbor & Field</span>
+        </a>
+
+        <button
+          className="icon-button nav-toggle"
+          type="button"
+          aria-label={open ? 'Close navigation' : 'Open navigation'}
+          aria-expanded={open}
+          onClick={() => setOpen((current) => !current)}
+        >
+          {open ? <X size={20} /> : <Menu size={20} />}
+        </button>
+
+        <nav className={open ? 'primary-nav open' : 'primary-nav'} aria-label="Primary navigation">
           {navItems.map((item) => (
-            <NavLink key={item.to} to={item.to}>
+            <NavLink key={item.to} to={item.to} onClick={() => setOpen(false)}>
               {item.label}
             </NavLink>
           ))}
         </nav>
-        <div className="header-actions">
-          <button className="icon-button" aria-label="Search">
-            <Search size={19} />
-          </button>
-          <NavLink className="icon-button" to="/about" aria-label="Account">
-            <UserRound size={19} />
-          </NavLink>
-          <NavLink className="bag-button" to="/cart" aria-label={`${cartCount} items in cart`}>
-            <ShoppingBag size={19} />
-            <span>{cartCount}</span>
-          </NavLink>
-          <button className="icon-button mobile-only" aria-label="Open menu">
-            <Menu size={20} />
-          </button>
-        </div>
+
+        <NavLink className="cart-link" to="/cart" aria-label={`Cart with ${itemCount} items`}>
+          <ShoppingBag size={19} />
+          <span>Cart</span>
+          <strong>{itemCount}</strong>
+        </NavLink>
       </header>
+
       <main>
         <Outlet />
       </main>
+
       <footer className="site-footer">
         <div>
-          <strong>North & Finch</strong>
-          <p>Considered goods for home, travel, and daily routines.</p>
+          <strong>Harbor & Field</strong>
+          <p>Everyday goods selected for home, travel, work, and weather.</p>
         </div>
         <div className="footer-links">
-          <a href="/catalog">New arrivals</a>
-          <a href="/about">Contact</a>
-          <a href="/checkout">Shipping</a>
+          <a href="/catalog">Shop</a>
+          <a href="/about">Support</a>
+          <a href="/checkout">Checkout</a>
         </div>
       </footer>
     </div>
